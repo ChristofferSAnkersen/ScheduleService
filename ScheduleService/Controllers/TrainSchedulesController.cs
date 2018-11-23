@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ScheduleService.Models;
+using ScheduleService.Services;
 
 namespace ScheduleService.Controllers
 {
@@ -13,18 +14,18 @@ namespace ScheduleService.Controllers
     [ApiController]
     public class TrainSchedulesController : ControllerBase
     {
-        private readonly GarageFactory _context;
+        private readonly TrainsDbContext _context;
 
-        public TrainSchedulesController(GarageFactory context)
+        public TrainSchedulesController(TrainsDbContext context)
         {
             _context = context;
         }
 
         // GET: api/TrainSchedules
         [HttpGet]
-        public IEnumerable<TrainSchedule> GetTrainSchedules()
+        public IEnumerable<TrainSchedule> GetSchedules()
         {
-            return _context.TrainSchedules;
+            return _context.Schedules;
         }
 
         // GET: api/TrainSchedules/5
@@ -36,7 +37,7 @@ namespace ScheduleService.Controllers
                 return BadRequest(ModelState);
             }
 
-            var trainSchedule = await _context.TrainSchedules.FindAsync(id);
+            var trainSchedule = await _context.Schedules.FindAsync(id);
 
             if (trainSchedule == null)
             {
@@ -90,7 +91,7 @@ namespace ScheduleService.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.TrainSchedules.Add(trainSchedule);
+            _context.Schedules.Add(trainSchedule);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTrainSchedule", new { id = trainSchedule.Id }, trainSchedule);
@@ -105,13 +106,13 @@ namespace ScheduleService.Controllers
                 return BadRequest(ModelState);
             }
 
-            var trainSchedule = await _context.TrainSchedules.FindAsync(id);
+            var trainSchedule = await _context.Schedules.FindAsync(id);
             if (trainSchedule == null)
             {
                 return NotFound();
             }
 
-            _context.TrainSchedules.Remove(trainSchedule);
+            _context.Schedules.Remove(trainSchedule);
             await _context.SaveChangesAsync();
 
             return Ok(trainSchedule);
@@ -119,7 +120,7 @@ namespace ScheduleService.Controllers
 
         private bool TrainScheduleExists(int id)
         {
-            return _context.TrainSchedules.Any(e => e.Id == id);
+            return _context.Schedules.Any(e => e.Id == id);
         }
     }
 }

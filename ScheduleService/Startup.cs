@@ -58,7 +58,7 @@ namespace ScheduleService
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=TrainSchedulesViews}/{action=Index}/{id?}");
+                    template: "{controller=TrainSchedulesView}/{action=Index}/{id?}");
             });
         }
     }

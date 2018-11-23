@@ -10,22 +10,22 @@ using ScheduleService.Services;
 
 namespace ScheduleService.Controllers
 {
-    public class TrainSchedulesViewsController : Controller
+    public class TrainSchedulesViewController : Controller
     {
         private readonly TrainsDbContext _context;
 
-        public TrainSchedulesViewsController(TrainsDbContext context)
+        public TrainSchedulesViewController(TrainsDbContext context)
         {
             _context = context;
         }
 
-        // GET: TrainSchedulesViews
+        // GET: TrainSchedules
         public async Task<IActionResult> Index()
         {
             return View(await _context.Schedules.ToListAsync());
         }
 
-        // GET: TrainSchedulesViews/Details/5
+        // GET: TrainSchedules/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +43,13 @@ namespace ScheduleService.Controllers
             return View(trainSchedule);
         }
 
-        // GET: TrainSchedulesViews/Create
+        // GET: TrainSchedules/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TrainSchedulesViews/Create
+        // POST: TrainSchedules/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,6 @@ namespace ScheduleService.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 _context.Add(trainSchedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -66,8 +65,8 @@ namespace ScheduleService.Controllers
             return View(trainSchedule);
         }
 
-        // GET: TrainSchedulesViews/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        // GET: TrainSchedules/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -82,7 +81,7 @@ namespace ScheduleService.Controllers
             return View(trainSchedule);
         }
 
-        // POST: TrainSchedulesViews/Edit/5
+        // POST: TrainSchedules/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,7 +116,7 @@ namespace ScheduleService.Controllers
             return View(trainSchedule);
         }
 
-        // GET: TrainSchedulesViews/Delete/5
+        // GET: TrainSchedules/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +134,7 @@ namespace ScheduleService.Controllers
             return View(trainSchedule);
         }
 
-        // POST: TrainSchedulesViews/Delete/5
+        // POST: TrainSchedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
