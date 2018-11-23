@@ -26,7 +26,7 @@ namespace ScheduleService.Controllers
         }
 
         // GET: TrainSchedulesViews/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -58,7 +58,7 @@ namespace ScheduleService.Controllers
         {
             if (ModelState.IsValid)
             {
-                trainSchedule.Id = Guid.NewGuid();
+                
                 _context.Add(trainSchedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +87,7 @@ namespace ScheduleService.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,DepartureTime,Destination,DistanceKm")] TrainSchedule trainSchedule)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DepartureTime,Destination,DistanceKm")] TrainSchedule trainSchedule)
         {
             if (id != trainSchedule.Id)
             {
@@ -118,7 +118,7 @@ namespace ScheduleService.Controllers
         }
 
         // GET: TrainSchedulesViews/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -138,7 +138,7 @@ namespace ScheduleService.Controllers
         // POST: TrainSchedulesViews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var trainSchedule = await _context.Schedules.FindAsync(id);
             _context.Schedules.Remove(trainSchedule);
@@ -146,7 +146,7 @@ namespace ScheduleService.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TrainScheduleExists(Guid id)
+        private bool TrainScheduleExists(int id)
         {
             return _context.Schedules.Any(e => e.Id == id);
         }

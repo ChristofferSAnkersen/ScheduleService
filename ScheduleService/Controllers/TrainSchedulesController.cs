@@ -29,7 +29,7 @@ namespace ScheduleService.Controllers
 
         // GET: api/TrainSchedules/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTrainSchedule([FromRoute] Guid id)
+        public async Task<IActionResult> GetTrainSchedule([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace ScheduleService.Controllers
 
         // PUT: api/TrainSchedules/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTrainSchedule([FromRoute] Guid id, [FromBody] TrainSchedule trainSchedule)
+        public async Task<IActionResult> PutTrainSchedule([FromRoute] int id, [FromBody] TrainSchedule trainSchedule)
         {
             if (!ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace ScheduleService.Controllers
 
         // DELETE: api/TrainSchedules/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTrainSchedule([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTrainSchedule([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace ScheduleService.Controllers
             return Ok(trainSchedule);
         }
 
-        private bool TrainScheduleExists(Guid id)
+        private bool TrainScheduleExists(int id)
         {
             return _context.TrainSchedules.Any(e => e.Id == id);
         }

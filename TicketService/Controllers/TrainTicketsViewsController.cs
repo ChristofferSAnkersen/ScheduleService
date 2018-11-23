@@ -26,7 +26,7 @@ namespace TicketService.Controllers
         }
 
         // GET: TrainTicketsViews/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -58,7 +58,6 @@ namespace TicketService.Controllers
         {
             if (ModelState.IsValid)
             {
-                trainTicket.Id = Guid.NewGuid();
                 _context.Add(trainTicket);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +86,7 @@ namespace TicketService.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,PassengerName,TrainScheduleId")] TrainTicket trainTicket)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PassengerName,TrainScheduleId")] TrainTicket trainTicket)
         {
             if (id != trainTicket.Id)
             {
@@ -118,7 +117,7 @@ namespace TicketService.Controllers
         }
 
         // GET: TrainTicketsViews/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -138,7 +137,7 @@ namespace TicketService.Controllers
         // POST: TrainTicketsViews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var trainTicket = await _context.Tickets.FindAsync(id);
             _context.Tickets.Remove(trainTicket);
@@ -146,7 +145,7 @@ namespace TicketService.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TrainTicketExists(Guid id)
+        private bool TrainTicketExists(int id)
         {
             return _context.Tickets.Any(e => e.Id == id);
         }

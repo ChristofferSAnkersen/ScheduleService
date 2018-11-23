@@ -7,7 +7,7 @@ namespace ScheduleService.Models
 {
     public class TrainSchedule
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime DepartureTime { get; set; }
 

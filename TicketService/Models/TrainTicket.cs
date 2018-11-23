@@ -7,11 +7,11 @@ namespace TicketService.Models
 {
     public class TrainTicket
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string PassengerName { get; set; }
 
-        public Guid TrainScheduleId { get; set; }
+        public int TrainScheduleId { get; set; }
 
     }
 }

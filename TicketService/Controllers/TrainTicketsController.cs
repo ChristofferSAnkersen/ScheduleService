@@ -30,7 +30,7 @@ namespace TicketService.Controllers
 
         // GET: api/TrainTickets/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTrainTicket([FromRoute] Guid id)
+        public async Task<IActionResult> GetTrainTicket([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace TicketService.Controllers
 
         // PUT: api/TrainTickets/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTrainTicket([FromRoute] Guid id, [FromBody] TrainTicket trainTicket)
+        public async Task<IActionResult> PutTrainTicket([FromRoute] int id, [FromBody] TrainTicket trainTicket)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace TicketService.Controllers
 
         // DELETE: api/TrainTickets/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTrainTicket([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTrainTicket([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace TicketService.Controllers
             return Ok(trainTicket);
         }
 
-        private bool TrainTicketExists(Guid id)
+        private bool TrainTicketExists(int id)
         {
             return _context.Tickets.Any(e => e.Id == id);
         }
@@ -126,7 +126,7 @@ namespace TicketService.Controllers
         // GET: api/TrainTickets/5/details
         [HttpGet("{id}/details")]
         public async Task<IActionResult> GetTrainTicketDetails(
-            [FromRoute] Guid id,
+            [FromRoute] int id,
             [FromServices] ScheduleApiProxy proxy
         )
         {
@@ -143,7 +143,7 @@ namespace TicketService.Controllers
             }
             var details = new TicketDetails()
             {
-                ID = trainTicket.Id,
+                Id = trainTicket.Id,
                 PassengerName = trainTicket.PassengerName,
                 Destination = trainSchedule.Destination,
                 DepartureTime = trainSchedule.DepartureTime,

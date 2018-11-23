@@ -7,7 +7,7 @@ namespace TicketService.Models
 {
     public class ScheduleItem
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime DepartureTime { get; set; }
         public string Destination { get; set; }
         public int DistanceKm { get; set; }
