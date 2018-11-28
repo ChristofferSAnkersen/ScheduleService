@@ -33,8 +33,19 @@ namespace ScheduleService
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<TrainsDbContext>(options => options.UseInMemoryDatabase("Trains"));
-            services.AddDbContext<GarageFactory>(options => options.UseInMemoryDatabase("Garage"));            
+            services.AddDbContext<TrainsDbContext>(options =>
+            {
+                string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connectionstring);
+            });
+
+            services.AddDbContext<GarageFactory>(options =>
+            {
+                string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connectionstring);
+            });
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

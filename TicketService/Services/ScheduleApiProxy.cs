@@ -10,7 +10,7 @@ namespace TicketService.Services
 {
     public class ScheduleApiProxy
     {
-        const string baseUrl = "http://192.168.99.100:8088/api";
+        const string baseUrl = "http://localhost:50815/api";
 
         public async Task<ScheduleItem> GetDetailsAsync(int id)
         {

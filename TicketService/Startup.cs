@@ -34,7 +34,11 @@ namespace TicketService
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<TicketsDbContext>(options => options.UseInMemoryDatabase("Trains"));
+            services.AddDbContext<TicketsDbContext>(options =>
+            {
+                string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+                options.UseSqlServer(connectionstring);
+            });
 
             services.AddTransient<ScheduleApiProxy>();
 
