@@ -9,7 +9,10 @@ namespace ScheduleService.Services
 {
     public class TrainsDbContext : DbContext
     {
-        public TrainsDbContext(DbContextOptions<TrainsDbContext> options) : base(options) { }
+        public TrainsDbContext(DbContextOptions<TrainsDbContext> options) : base(options)
+        {
+
+        }
         public DbSet<TrainSchedule> Schedules { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using ScheduleService.Models;
 namespace ScheduleService.Migrations
 {
     [DbContext(typeof(GarageFactory))]
-    [Migration("20181128171004_Init")]
-    partial class Init
+    [Migration("20181214083903_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
